@@ -6,7 +6,18 @@ void setup() {
 }
 
 void loop() {
-// Sửa lại thành bản cũ để tạo mâu thuẫn
-sprintf(chuoi, "%d,%d,%d\n", (int)nhietDo[0], (int)nhietDo[1], (int)nhietDo[2]);
-Serial.print(chuoi);
+  adcValues[0] = analogRead(A0);
+  nhietDo[0] = (adcValues[0] * 500.0) / 1023.0;
+  
+  adcValues[1] = analogRead(A1);
+  nhietDo[1] = (adcValues[1] * 500.0) / 1023.0;
+  
+  // Lấy kênh A2 của SV A
+  adcValues[2] = analogRead(A2);
+  nhietDo[2] = (adcValues[2] * 500.0) / 1023.0;
+  
+  // Bọc trong JSON của SV B
+  sprintf(chuoi, "{\"A0\":%d, \"A1\":%d, \"A2\":%d}\n", (int)nhietDo[0], (int)nhietDo[1], (int)nhietDo[2]);
+  Serial.print(chuoi);
+  delay(100);
 }
