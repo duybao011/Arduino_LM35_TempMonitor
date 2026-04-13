@@ -1,30 +1,27 @@
-# 🏠 Hệ thống AIoT Smart Home Giám sát Người cao tuổi
+# 🌡️ Arduino LM35 Temperature Monitor
 
-## 1. Mô tả (Description)
-Dự án này là một hệ thống AIoT dành cho nhà thông minh, tập trung vào việc theo dõi và giám sát an toàn cho người cao tuổi. Hệ thống thu thập dữ liệu từ các cảm biến môi trường và chuyển động, phân tích hành vi bất thường, và gửi cảnh báo khẩn cấp theo thời gian thực để đảm bảo an toàn cho người sử dụng.
+Dự án đọc nhiệt độ từ cảm biến LM35 sử dụng vi điều khiển Arduino và gửi dữ liệu qua cổng Serial theo định dạng JSON.
 
-## 2. Tính năng (Features)
-- 🚶‍♂️ **Theo dõi chuyển động:** Sử dụng cảm biến PIR để phát hiện sự hiện diện và hoạt động.
-- 🔐 **Kiểm soát truy cập:** Tích hợp module RFID để nhận diện người ra vào.
-- 📊 **Giám sát thời gian thực:** Giao diện dashboard trực quan hiển thị dữ liệu hệ thống.
-- ⚠️ **Cảnh báo thông minh:** Tự động phát hiện các hành vi bất thường và gửi thông báo khẩn cấp.
+## 🚀 Tính năng chính
+* Đọc tín hiệu Analog từ 3 cảm biến LM35 (Kênh A0, A1, A2).
+* Tự động quy đổi giá trị điện áp sang thang đo độ C.
+* Xuất dữ liệu qua cổng Serial (Baudrate 9600) với chuẩn cấu trúc dữ liệu JSON để dễ dàng tích hợp với các ứng dụng máy tính (C#, Python, Web).
 
-## 3. Phần cứng (Hardware Components)
-Dưới đây là danh sách các thiết bị phần cứng được sử dụng trong dự án, bao gồm cả mạch PCB tùy chỉnh:
+## 🛠️ Phần cứng sử dụng
+* 1 x Board mạch Arduino UNO R3 (hoặc tương đương).
+* 3 x Cảm biến nhiệt độ LM35.
+* Dây cắm testboard.
 
-| STT | Tên Linh Kiện | Số lượng | Chức năng chính |
-|:---:|:---|:---:|:---|
-| 1 | Vi điều khiển ESP32 | 1 | Xử lý trung tâm, kết nối WiFi/MQTT |
-| 2 | Cảm biến chuyển động PIR | 2 | Phát hiện chuyển động trong phòng |
-| 3 | Module đọc thẻ RFID | 1 | Xác thực quyền truy cập |
-| 4 | Mạch in Custom PCB (FR4) | 1 | Kết nối vật lý các linh kiện hệ thống |
+## 💻 Hướng dẫn sử dụng
+1. Clone repository này về máy: `git clone https://github.com/duybao011/Arduino_LM35_TempMonitor.git`
+2. Mở file `firmware/LM35_TempReader/LM35_TempReader.ino` bằng Arduino IDE.
+3. Kết nối board Arduino vào máy tính và chọn đúng cổng COM.
+4. Bấm **Upload** mã nguồn.
+5. Mở **Serial Monitor** (Ctrl + Shift + M) ở mức baudrate `9600` để xem kết quả trả về:
+   ```json
+   {"A0":25, "A1":26, "A2":25}
 
-## 4. Cấu trúc thư mục (Directory Structure)
-```text
-AIoT-SmartHome/
-├── docs/                 # Tài liệu dự án và báo cáo
-├── hardware/             # File thiết kế phần cứng (SolidWorks, file Gerber PCB)
-├── src/                  # Mã nguồn chính cho ESP32
-│   ├── main.cpp          # Chương trình khởi chạy
-│   └── sensors.h         # Thư viện giao tiếp cảm biến
-└── README.md             # File thông tin dự án
+Thành viên nhóm
+Sinh viên A: Đỗ Trần Duy Bảo - Quản lý code đọc tín hiệu.
+
+Sinh viên B: Trần Khôi Nguyên - Xử lý cấu trúc dữ liệu JSON.
