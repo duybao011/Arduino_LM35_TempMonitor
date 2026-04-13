@@ -19,7 +19,8 @@ void loop() {
   nhietDo[2] = (adcValues[2] * 500.0) / 1023.0;
   
   // Xuất ra Serial
-  sprintf(chuoi, "%d,%d,%d\n", (int)nhietDo[0], (int)nhietDo[1], (int)nhietDo[2]);
-  Serial.print(chuoi);
+// Sửa lại thành bản cũ để tạo mâu thuẫn
+sprintf(chuoi, "%d,%d,%d\n", (int)nhietDo[0], (int)nhietDo[1], (int)nhietDo[2]);
+Serial.print(chuoi);
   delay(100);
 }
